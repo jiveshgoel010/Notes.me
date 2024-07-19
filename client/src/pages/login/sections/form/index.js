@@ -1,34 +1,22 @@
 import React from 'react'
 import styles from './form.module.scss';
 import BrandLogo from '../../../../components/shared/brand';
-// import { Icon } from '@iconify/react';
-import Input from '../../../../components/atoms/input';
-import Button from '../../../../components/atoms/button';
-import { useNavigate } from 'react-router-dom';
+import Signin from '../../partials/signin';
+import Signup from '../../partials/signup';
 
 function Form() {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const navigate = useNavigate();
+
+  const [active, setActive] = React.useState('signin');
 
   return (
     <section className={styles["form-container"]}>
       <BrandLogo />
-      <div className={styles.form}>
-        <Button text={'Join With Google'} icon={'ri:google-fill'} />
-        <div className={styles.option}><span>Or Join With Email</span></div>
-        <article>
-          <Input type={'email'} value={email} placeholder={'Enter Email'} onChange={(e) => setEmail(e.target.value)} />
-          <Input type={'password'} value={password} placeholder={'Enter Password'} onChange={(e) => setPassword(e.target.value)} />
+      {active === 'signin' ? <Signin /> : <Signup handleSwitch={()=> setActive("signin")}/>}
 
-          <Button
-            text={'Join With Email'}
-            icon={'material-symbols:login'}
-            className={styles.emailBtn} 
-            handleClick={()=> navigate("/notes")}
-          />
-        </article>
-      </div>
+      {active === 'signin' ?
+        <p>Not a resgistered user? <span onClick={() => setActive("signup")}>Signup Now.</span></p> :
+        <p>Already a user? <span onClick={() => setActive("signin")}>Signin Now.</span></p>
+      }
     </section>
   )
 }

@@ -1,7 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Loader from "../components/shared/loader";
+
+// import { Toastcontainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import Loader from "../components/shared/loader";
+
 import Login from "../pages/login";
 import Main from "../layouts/Main";
 import Notes from "../pages/notes";

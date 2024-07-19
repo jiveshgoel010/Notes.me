@@ -25,6 +25,11 @@
             display: block;
         }
 
+        .textarea {
+            height: 100%;
+            background-color: transparent;
+        }
+
         button {
             cursor: pointer;
             background-color: transparent;
@@ -35,9 +40,15 @@
     }
 
     .footer {
-        p {
-            font-size: var(--fs-sm);
-            font-weight: var(--fw-light);
+        display: flex;
+        align-items: center;
+        font-size: var(--fs-sm);
+        font-weight: var(--fw-light);
+
+        .saveBtn {
+            width: 50px;
+            height: 25px;
+            cursor: pointer;
         }
     }
 }

@@ -7,28 +7,30 @@ import notesData from '../../data/notes.json';
 import utils from '../../utils/localStorage';
 import { useState } from 'react';
 
+import types from '../../config/types';
+
 function Notes() {
 
   const [notesColl, setNotesColl] = useState([]);
-
+  const data = utils.getFromLocalStorage(types.NOTES_DATA);
 
   useEffect(() => {
-    const data = utils.getFromLocalStorage('notes-data');
     if (data && data.length) {
-      setNotesColl(notesData);
+      setNotesColl(data);
       return;
     }
-    utils.addToLocalStorage('notes-data', notesData);
+    //To prevent empty screen at first time
+    utils.addToLocalStorage(types.NOTES_DATA, notesData);
     setNotesColl(notesData);
-  }, [])
+  }, [data])
 
 
   return (
     <section className={styles.container}>
       <Greeting />
       <main>
-        {notesData.map((note, index) => (
-          <Note key={index} text={note.text} date={note.createdAt} color={note.color} />
+        {notesColl.map((note, index) => (
+          <Note key={note.id} text={note.text} date={note.createdAt} color={note.color} />
         ))}
       </main>
     </section>
